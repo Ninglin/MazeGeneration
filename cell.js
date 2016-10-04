@@ -1,8 +1,9 @@
-function Cell(row, column, width) {
+function Cell(row, column, width, height) {
 	this.visited = false;
 	this.row = row;
 	this.column = column;
 	this.width = width;
+	this.height = height;
 	this.walls = [true, true, true, true];
 
 
@@ -12,7 +13,7 @@ function Cell(row, column, width) {
 
 Cell.prototype.draw = function () {
 	var x = this.column * this.width;
-	var y = this.row * this.width;
+	var y = this.row * this.height;
 
 	this.ctx.beginPath();
 
@@ -100,8 +101,8 @@ Cell.prototype.collapseWall = function (neighbor) {
 };
 
 Cell.prototype.highlight = function () {
-	var x = this.row * this.width;
-	var y = this.column * this.width;
+	var x = this.column * this.width;
+	var y = this.row * this.height;
 	this.ctx.fillStyle = "#5a1480"
-	this.ctx.fillRect(x, y, this.width, this.width);
+	this.ctx.fillRect(x, y, this.width, this.height);
 };

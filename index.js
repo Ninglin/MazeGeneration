@@ -22,7 +22,7 @@ var rows, columns, ctx;
 		createCanvas(400, 400);
 		for (var i = 0; i < rows; i++) {
 			for (var j = 0; j < columns; j++) {
-				var cell = new Cell(i, j, cellWidth);
+				var cell = new Cell(i, j, cellWidth, cellWidth);
 				grid.push(cell);
 			}
 		}
@@ -75,7 +75,7 @@ var rows, columns, ctx;
 	}
 
 	function removeWalls(a, b) {
-		var x = a.i - b.i;
+		var x = a.column - b.column;
 		if (x === 1) {
 			a.walls[3] = false;
 			b.walls[1] = false;
@@ -83,7 +83,7 @@ var rows, columns, ctx;
 			a.walls[1] = false;
 			b.walls[3] = false;
 		}
-		var y = a.j - b.j;
+		var y = a.row - b.row;
 		if (y === 1) {
 			a.walls[0] = false;
 			b.walls[2] = false;
