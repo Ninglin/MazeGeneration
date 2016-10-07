@@ -63,9 +63,9 @@ var rows, columns, ctx;
 	}
 
 	function createCanvas(width, height) {
-		var body = document.querySelector('body');
-		if (body) {
-			body.innerHTML = '<canvas id="drawArea" width="' + width + '" height="' + height + '" />'
+		var canvasContainer = document.querySelector('canvasContainer');
+		if (canvasContainer) {
+			canvasContainer.innerHTML = '<canvas id="drawArea" width="' + width + '" height="' + height + '" />'
 		}
 		rows = Math.floor(height / cellWidth);
 		columns = Math.floor(width / cellWidth);
