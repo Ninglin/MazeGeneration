@@ -1,14 +1,15 @@
 var grid = [];
+var stack = [];
 var rows, columns, ctx;
 
 (function (window, document, undefined) {
-	var cellWidth = 80;
+	var cellWidth = 10;
 	var gridSize = 400;
 	var current, fps, fpsInterval, ellapsed, now, then, canvas;
 
 	document.addEventListener('DOMContentLoaded',
 		function () {
-			setup(5);
+			setup(60);
 			draw();
 		});
 
@@ -44,11 +45,15 @@ var rows, columns, ctx;
 			current.highlight();
 			var next = current.getNextNeighbor();
 			if (next) {
-				next.visited = true;
 
-				//current.collapseWall(next);
-				removeWalls(current, next);
+				stack.push(current);
+				
+				current.collapseWall(next);
 
+				current = next;
+				// current.visited = true;
+			} else if(stack.length > 0){
+				next = stack.pop();
 				current = next;
 			}
 

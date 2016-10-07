@@ -66,37 +66,37 @@ Cell.prototype.getNextNeighbor = function () {
 		neighbours.push(left);
 
 	if (neighbours.length > 0) {
-		var nextIndex = Math.floor(Math.random() * (neighbours.length + 1));
+		var nextIndex = Math.floor(Math.random() * (neighbours.length));
 		return neighbours[nextIndex];
 	} else
 		return undefined;
 };
 
-Cell.prototype.collapseWall = function (neighbor) {
+Cell.prototype.collapseWall = function (relativeTo) {
 	console.log("Current");
 	console.log(this);
 	console.log("Next");
-	console.log(neighbor);
-	var xDirection = this.column - neighbor.column;
+	console.log(relativeTo);
+	var xDirection = this.column - relativeTo.column;
 	if (xDirection === 1) {
 		//the neighbor is to the left
 		this.walls[3] = false;
-		neighbor.walls[1] = false;
+		relativeTo.walls[1] = false;
 	} else if (xDirection === -1) {
 		//the neighbor is to the left
 		this.walls[1] = false;
-		neighbor.walls[3] = false;
+		relativeTo.walls[3] = false;
 	}
 
-	var yDirection = this.row - neighbor.row;
+	var yDirection = this.row - relativeTo.row;
 	if (yDirection === 1) {
 		//the neighbor is above
 		this.walls[0] = false;
-		neighbor.walls[2] = false;
+		relativeTo.walls[2] = false;
 	} else if (yDirection === -1) {
 		//the neighbor is below
 		this.walls[2] = false;
-		neighbor.walls[0] = false;
+		relativeTo.walls[0] = false;
 	}
 };
 
